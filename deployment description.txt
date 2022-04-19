@@ -1,0 +1,51 @@
+I run this django app on CentOS7 linux with PostgreSQL 11
+on python3.6.8 with
+ pip 9.03
+ virtualenv
+ django 3.2
+ psycopg2
+ environs 
+ requests
+ django_rest_framework
+ 
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-7
+https://stackpython.medium.com/how-to-start-django-project-with-a-database-postgresql-aaa1d74659d8
+ 
+After you deployed the virtual env please "source it" and deploy the furter requirements in the virtual env   
+ 
+Please deploy the requirments in given order,
+
+Django can be run on Windows also. You can google instruction for installing Django on windows, there are plenty of them. 
+ 
+The app expects a DB with the next parameters (): 
+ 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'djangodb', 
+        'USER': 'djangodb', 
+        'PASSWORD': 'djangodb',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
+    }
+} 
+
+
+
+The django app is in the mysite.tar.gz archive
+Please untar it to the parent directory of the virtual env, beside the virtual env
+
+To create a DB schem please run the django migrations 
+python manage.py migrate
+
+To populate the DB please run the ingest.py
+python3 ingest.py  
+
+After ingestion you can run the django app with the next command 
+python manage.py runserver
+
+If the django is running on 127.0.0.1:8000 you can access the Episod list API on 
+http://127.0.0.1:8000/mysite/api
+
+If the django is running on 127.0.0.1:8000 you can access the Episod detail API on using imdb ID as a key
+http://127.0.0.1:8000/mysite/api/tt3846626/
